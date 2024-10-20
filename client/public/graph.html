@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+<head>
+    <title>Neovis.js Simple Example</title>
+    <style type="text/css">
+        html, body {
+            font: 16pt arial;
+            
+        }
+
+        #viz {
+            width: 900px;
+            height: 700px;
+            border: 1px solid lightgray;
+            font: 22pt arial;
+        }
+    </style>
+    <script src="https://unpkg.com/neovis.js@2.0.2"></script>
+</head>
+
+<script type="text/javascript">
+
+    let neoViz;
+
+    function draw() {
+        const params = new URLSearchParams(window.location.search);
+
+        // Get parameters from the URL
+        const neo4jConfig = {
+            serverUrl: "neo4j://<instance id>.databases.neo4j.io",
+            serverUser: "neo4j",
+            serverPassword: "<password>",
+            driverConfig: { 
+            encrypted: "ENCRYPTION_ON",
+            trust: "TRUST_SYSTEM_CA_SIGNED_CERTIFICATES"
+            }				
+        }
+
+        const query = params.get('query'); // Get the query from URL
+
+        const config = {
+            containerId: "viz",
+            neo4j: neo4jConfig, // Pass the neo4jConfig object here
+            visConfig: {
+            nodes: {
+                shape: 'dot',
+                size: 20,
+                font: { size: 18, color: "blue" },
+            },
+            edges: {
+                arrows: {
+                    to: { enabled: true },
+                },
+                selectionWidth:3,
+                color: {
+                    color: 'gray',
+                    highlight: 'orange',
+                    hover: 'orange',
+                },
+            },
+            layout: {
+                improvedLayout: true,
+                hierarchical: {
+                    enabled: false,
+                },
+            },
+        },
+            labels: {
+                Order: {
+
+                },
+                Shipper:{
+
+                }
+
+            },
+            relationships: {
+                SHIPS:{
+
+                },
+            },
+            initialCypher: query || "MATCH p=()-[:SHIPS]->() RETURN p LIMIT 5" // Default query if none is provided
+        };
+
+        neoViz = new NeoVis.default(config);
+        console.log(neoViz);
+        neoViz.render();
+    }
+</script>
+<body onload="draw()">
+<div id="viz"></div>
+<div>helloo</div>
+</body>
+</html>
+
+
+
+<!-- Customer: {
+    label: "CompanyName", // Use a relevant property
+    value: "CustomerID", // Assuming CustomerID can represent size or importance
+    group: "Customer"
+},
+Product: {
+    label: "ProductName", // Display the product name
+    value: "UnitPrice", // Use UnitPrice to represent size
+    group: "Product"
+},
+Supplier: {
+    label: "CompanyName", // Display supplier name
+    value: "SupplierID", // Use SupplierID for importance
+    group: "Supplier"
+}, -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Hello
+</body>
+</html> -->
+

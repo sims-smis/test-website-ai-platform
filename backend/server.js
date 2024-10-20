@@ -10,9 +10,10 @@ app.use(express.json());
 
 // Neo4j AuraDB connection details
 const driver = neo4j.driver(
-  '<auradb uri>', // Replace with your AuraDB URI
-  neo4j.auth.basic('neo4j', '<Auradb password>') // Replace with your AuraDB credentials
+  'neo4j+s://980a96ac.databases.neo4j.io', // Replace with your AuraDB URI
+  neo4j.auth.basic('neo4j', 'uU9BoxwwUl5FIRU9c48nXhxjM5yVwjkmyc_AeMqnHNY') // Replace with your AuraDB credentials
 );
+
 
 // Define an endpoint to handle Cypher queries
 app.post('/api/run-cypher', async (req, res) => {
