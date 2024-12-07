@@ -3,9 +3,9 @@ import './App.css';
 import GraphQuery from './GraphQuery';
 
 const neo4jConfig = {
-  url: 'neo4j+s://<instance id>c.databases.neo4j.io', // Connection URL
+  url: 'neo4j+s://980a96ac.databases.neo4j.io', // Connection URL
   username: 'neo4j', // Your Neo4j username
-  password: '<Password>', // Your Neo4j password
+  password: 'uU9BoxwwUl5FIRU9c48nXhxjM5yVwjkmyc_AeMqnHNY', // Your Neo4j password
 };
 
 function App() {

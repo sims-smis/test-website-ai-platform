@@ -18,7 +18,8 @@ const driver = neo4j.driver(
 // Define an endpoint to handle Cypher queries
 app.post('/api/run-cypher', async (req, res) => {
   const { query } = req.body;
-
+  console.log("yoooooooooooooooooooooooooooo")
+  console.log('Received query:', query);
   try {
     const session = driver.session();
     const result = await session.run(query);
@@ -27,7 +28,7 @@ app.post('/api/run-cypher', async (req, res) => {
     session.close();
   } catch (error) {
     console.error('Error executing Cypher query:', error);
-    res.status(500).send('Error executing query');
+    res.status(500).send({error: 'Error executing query', message: error.message});
   }
 });
 

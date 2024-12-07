@@ -24,7 +24,7 @@ const GraphQuery = ({ apiEndpoint = 'http://localhost:5001/api/run-cypher', neo4
     }
   
     // Construct the URL for the new window
-    const graphUrl = new URL('/graph.html', window.location.origin);
+    const graphUrl = new URL('/d3graph.html', window.location.origin);
     graphUrl.searchParams.append('url', neo4jConfig.url);
     graphUrl.searchParams.append('username', neo4jConfig.username);
     graphUrl.searchParams.append('password', neo4jConfig.password);
